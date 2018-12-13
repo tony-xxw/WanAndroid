@@ -2,8 +2,8 @@ package com.study.kotlin.wan
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,16 +12,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         findViewById<TextView>(R.id.tv_test).setOnClickListener {
-            Log.d("XXW", "Test")
+
 
         }
-//        main();
+        tvTest.text = "Android"
+
     }
-
-
-    private fun main(args: Array<String>) {
-        println("Hello World")
-    }
-
-
 }
