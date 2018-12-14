@@ -23,6 +23,15 @@ allprojects {
     }
 }
 
+ext {
+    appCompatVersion = "1.1.0-alpha01"
+    recyclerVersion = "1.1.0-alpha01"
+    cardViewVersion = "1.0.0"
+    materialVersion = "1.1.0-alpha01"
+    navigationVersion = "1.0.0-alpha08"
+    constraintLayoutVersion = "2.0.0-alpha2"
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

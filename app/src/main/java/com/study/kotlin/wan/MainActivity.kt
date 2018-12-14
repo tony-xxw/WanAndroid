@@ -1,21 +1,23 @@
 package com.study.kotlin.wan
 
+import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_main.*
+import androidx.navigation.findNavController
 
-class MainActivity : AppCompatActivity() {
+
+class MainActivity : AppCompatActivity(), HomeFragment.OnFragmentInteractionListener, BlogFragment.OnFragmentInteractionListener {
+
+    override fun onFragmentInteraction(uri: Uri) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        findViewById<TextView>(R.id.tv_test).setOnClickListener {
-
-
-        }
-        tvTest.text = "Android"
-
     }
+
+    override fun onSupportNavigateUp() =
+            findNavController(R.id.homeFragment).navigateUp()
 }
