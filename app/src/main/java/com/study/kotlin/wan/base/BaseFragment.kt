@@ -1,4 +1,4 @@
-package com.koltin.common.base
+package com.study.kotlin.wan.base
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
