@@ -1,6 +1,7 @@
 package com.study.kotlin.wan.base
 
 import android.os.Bundle
+import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
 
 abstract class BaseActivity : AppCompatActivity() {

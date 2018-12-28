@@ -3,4 +3,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">首页</string>
+    <string name="knowledge">知识体系</string>
+    <string name="hot">热门</string>
+    <string name="people">我</string>
 </resources>
