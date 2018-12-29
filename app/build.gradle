@@ -6,6 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.study.kotlin.wan"
         minSdkVersion rootProject.minSdkVersion
@@ -27,14 +28,14 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:' + rootProject.support_version
     implementation 'com.android.support.constraint:constraint-layout:' + rootProject.constraintLayoutVersion
-    implementation 'com.android.support:support-v4:' + rootProject.support_version
+//    implementation 'com.android.support:support-v4:' + rootProject.support_version
+    implementation 'com.android.support:design:' + rootProject.support_version
     testImplementation 'junit:junit:' + rootProject.junit
     androidTestImplementation 'com.android.support.test:runner:' + rootProject.runner
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:' + rootProject.espresso_core
 
-    // Navigation
-    implementation 'android.arch.navigation:navigation-fragment-ktx:' + rootProject.navigationVersion
-    implementation 'android.arch.navigation:navigation-ui-ktx:' + rootProject.navigationVersion
+
+
 
     implementation "com.squareup.retrofit2:retrofit:" + rootProject.retrofit2_version
     implementation "com.squareup.retrofit2:converter-gson:" + rootProject.retrofit2_converter_gson_version

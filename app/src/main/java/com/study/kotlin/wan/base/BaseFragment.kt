@@ -11,7 +11,7 @@ abstract class BaseFragment : Fragment() {
     lateinit var mContentView: View
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mContentView = inflater.inflate(getLayoutId(), container)
+        mContentView = inflater.inflate(getLayoutId(), container, false)
         return mContentView
     }
 

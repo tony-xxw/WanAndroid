@@ -1,7 +1,10 @@
 package com.study.kotlin.wan.ui
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.support.design.internal.BottomNavigationItemView
+import android.support.design.internal.BottomNavigationMenuView
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.FragmentTransaction
 import android.util.Log
@@ -30,6 +33,7 @@ class MainActivity : BaseActivity() {
         bnv_navigation.run {
             setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
             selectedItemId = R.id.navigation_home
+            disableShiftMode(bnv_navigation)
         }
 
     }
@@ -43,13 +47,21 @@ class MainActivity : BaseActivity() {
 
     private val onNavigationItemSelectedListener =
             BottomNavigationView.OnNavigationItemSelectedListener { item ->
-                setFragment()
+                setFragment(item.itemId)
                 return@OnNavigationItemSelectedListener when (item.itemId) {
                     R.id.navigation_home -> {
 
                         true
                     }
                     R.id.navigation_hot -> {
+
+                        true
+                    }
+                    R.id.navigation_people -> {
+
+                        true
+                    }
+                    R.id.navigation_knowledge -> {
 
                         true
                     }
@@ -60,11 +72,12 @@ class MainActivity : BaseActivity() {
             }
 
 
-    private fun setFragment() {
+    private fun setFragment(index: Int) {
         fragmentManager.beginTransaction().apply {
             homeFragment ?: let {
-                HotFragment().let {
-                    hotFragment = it
+                HomeFragment().let {
+                    Log.d("XXW", "homeFragment")
+                    homeFragment = it
                     add(R.id.fl_content, it)
                 }
             }
@@ -89,6 +102,28 @@ class MainActivity : BaseActivity() {
             }
 
             hideFragment(this)
+            when (index) {
+                R.id.navigation_home -> {
+                    homeFragment?.let {
+                        this.show(it)
+                    }
+                }
+                R.id.navigation_hot -> {
+                    hotFragment?.let {
+                        this.show(it)
+                    }
+                }
+                R.id.navigation_knowledge -> {
+                    knowlegerFragment?.let {
+                        this.show(it)
+                    }
+                }
+                R.id.navigation_people -> {
+                    peopleFragment?.let {
+                        this.show(it)
+                    }
+                }
+            }
         }.commit()
     }
 
@@ -109,4 +144,29 @@ class MainActivity : BaseActivity() {
             transaction.hide(it)
         }
     }
+
+    @SuppressLint("RestrictedApi")
+    fun disableShiftMode(view: BottomNavigationView) {
+        //由于BottomNavigationView默认第一个为选中状态，所以我们首先获取第一个条目的menuView
+        val menuView = view.getChildAt(0) as BottomNavigationMenuView
+
+        try {
+            val shiftingMode = menuView.javaClass.getDeclaredField("mShiftingMode")
+            shiftingMode.isAccessible = true
+            shiftingMode.setBoolean(menuView, false)
+            shiftingMode.isAccessible = false
+            for (i in 0 until menuView.childCount) {
+                val item = menuView.getChildAt(i) as BottomNavigationItemView
+                item.setShiftingMode(false)
+                item.setChecked(item.itemData.isChecked)
+            }
+        } catch (e: NoSuchFieldException) {
+            Log.e("rcw", "无法获取mShiftingMode属性", e)
+        } catch (e: IllegalAccessException) {
+            Log.e("rcw", "无法修改mShiftingMode属性值", e)
+        }
+
+    }
+
+
 }
