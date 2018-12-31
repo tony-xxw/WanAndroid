@@ -8,6 +8,7 @@ import android.support.design.internal.BottomNavigationMenuView
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.FragmentTransaction
 import android.util.Log
+import android.view.View
 import com.study.kotlin.wan.R
 import com.study.kotlin.wan.base.BaseActivity
 import com.study.kotlin.wan.ui.home.HomeFragment
@@ -35,7 +36,6 @@ class MainActivity : BaseActivity() {
             selectedItemId = R.id.navigation_home
             disableShiftMode(bnv_navigation)
         }
-
     }
 
     override fun initView() {
