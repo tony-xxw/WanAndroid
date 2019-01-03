@@ -35,7 +35,7 @@ object RetrofitHelper {
                 val domain = request.url().host()
                 if ((requestUrl.contains(SAVE_USER_LOGIN_KEY) || requestUrl.contains(SAVE_USER_REGISTER_KEY))
                         && !response.headers(SET_COOKIE_KEY).isEmpty()) {
-                    val cookies = response.header(SET_COOKIE_KEY)
+                    val cookies = response.headers(SET_COOKIE_KEY)
                     val cookie = encodeCookie(cookies)
                     saveCooking(requestUrl, domain, cookie)
                 }
@@ -72,12 +72,39 @@ object RetrofitHelper {
                 .retrofit
     }
 
-    private fun saveCooking(requestUrl: String, domain: String?, cookie: Any) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    private fun saveCooking(url: String?, domain: String?, cookies: String) {
+        url ?: return
+        var spUrl: String by PreferenceUtil(url, cookies)
+        @Suppress("UNUSED_VALUE")
+        spUrl = cookies
+        domain ?: return
+        var spDomain: String by PreferenceUtil(domain, cookies)
+        @Suppress("UNUSED_VALUE")
+        spDomain = cookies
     }
 
-    private fun encodeCookie(cookies: String?): Any {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    private fun encodeCookie(cookies: List<String>): String {
+        val sb = StringBuilder()
+        val set = HashSet<String>()
+
+        cookies.map { cookie ->
+            cookie.split(";".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        }.forEach {
+            it.filter { set.contains(it) }.forEach { set.add(it) }
+        }
+
+        val ite = set.iterator()
+        while (ite.hasNext()) {
+            val cookie = ite.next()
+            sb.append(cookie).append(";")
+        }
+
+        val last = sb.lastIndexOf(";")
+        if (sb.length - 1 == last) {
+            sb.deleteCharAt(last)
+        }
+
+        return sb.toString()
     }
 
     private fun <T> getService(url: String, service: Class<T>): T = create(url).create(service)

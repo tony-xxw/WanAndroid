@@ -100,8 +100,8 @@ class MainActivity : BaseActivity() {
                     add(R.id.fl_content, it)
                 }
             }
-
             hideFragment(this)
+            Log.d("XXW","setFragment")
             when (index) {
                 R.id.navigation_home -> {
                     homeFragment?.let {
@@ -143,6 +143,7 @@ class MainActivity : BaseActivity() {
         peopleFragment?.let {
             transaction.hide(it)
         }
+        Log.d("XXW", "HideFragment")
     }
 
     @SuppressLint("RestrictedApi")

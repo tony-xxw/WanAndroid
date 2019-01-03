@@ -33,9 +33,7 @@ dependencies {
     testImplementation 'junit:junit:' + rootProject.junit
     androidTestImplementation 'com.android.support.test:runner:' + rootProject.runner
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:' + rootProject.espresso_core
-
-
-
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.0'
 
     implementation "com.squareup.retrofit2:retrofit:" + rootProject.retrofit2_version
     implementation "com.squareup.retrofit2:converter-gson:" + rootProject.retrofit2_converter_gson_version
